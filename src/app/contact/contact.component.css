@@ -1,0 +1,384 @@
+.contact-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+  }
+  
+  /* Section En-tête */
+  .header-section {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .main-title {
+    color: #00a8e8;
+    font-size: 56px;
+    font-weight: 700;
+    font-style: italic;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+  }
+  
+  .intro-box {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  .intro-title {
+    color: #4caf50;
+    font-size: 24px;
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: 15px;
+    line-height: 1.4;
+  }
+  
+  .intro-text {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0;
+  }
+  
+  .intro-text strong {
+    color: #4caf50;
+    font-weight: 700;
+  }
+  
+  /* Contenu principal */
+  .main-content {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  
+  /* Informations de contact */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+  }
+  
+  .info-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  
+  .icon-wrapper {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .icon-wrapper.yellow {
+    background-color: #ffd700;
+    color: white;
+  }
+  
+  .icon-wrapper.red {
+    background-color: #dc143c;
+    color: white;
+  }
+  
+  .icon-wrapper.green {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .info-content {
+    flex: 1;
+  }
+  
+  .info-label {
+    font-size: 22px;
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+  
+  .yellow-text {
+    color: #ffd700;
+  }
+  
+  .red-text {
+    color: #dc143c;
+  }
+  
+  .green-text {
+    color: #4caf50;
+  }
+  
+  .info-detail {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 4px 0;
+  }
+  
+  .phone-link,
+  .email-link {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .phone-link:hover,
+  .email-link:hover {
+    color: #00a8e8;
+    text-decoration: underline;
+  }
+  
+  /* Section formulaire */
+  .form-section {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 25px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group.full-width {
+    margin-bottom: 25px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 15px 20px;
+    font-size: 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    resize: vertical;
+  }
+  
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #999;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #00a8e8;
+    box-shadow: 0 0 0 3px rgba(0, 168, 232, 0.1);
+  }
+  
+  .form-group input.invalid,
+  .form-group textarea.invalid {
+    border-color: #dc143c;
+  }
+  
+  .form-group input.invalid:focus,
+  .form-group textarea.invalid:focus {
+    box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.1);
+  }
+  
+  .error {
+    color: #dc143c;
+    font-size: 13px;
+    margin-top: 5px;
+    display: block;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+  }
+  
+  .submit-btn {
+    background-color: #00a8e8;
+    color: white;
+    padding: 14px 50px;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+  }
+  
+  .submit-btn:hover {
+    background-color: #0088c0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 168, 232, 0.3);
+  }
+  
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .main-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  
+    .contact-info {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+  
+    .info-item {
+      flex-basis: calc(50% - 20px);
+      min-width: 280px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .contact-container {
+      padding: 20px 15px;
+    }
+  
+    .main-title {
+      font-size: 40px;
+    }
+  
+    .intro-box {
+      padding: 25px 20px;
+    }
+  
+    .intro-title {
+      font-size: 20px;
+    }
+  
+    .intro-text {
+      font-size: 15px;
+    }
+  
+    .contact-info {
+      flex-direction: column;
+    }
+  
+    .info-item {
+      flex-basis: 100%;
+    }
+  
+    .form-section {
+      padding: 25px 20px;
+    }
+  
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  
+    .submit-btn {
+      width: 100%;
+    }
+  
+    .info-label {
+      font-size: 20px;
+    }
+  }
+
+  /* Messages d'alerte */
+.alert {
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    animation: slideDown 0.3s ease-out;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+  
+  .alert-success svg {
+    stroke: #155724;
+    flex-shrink: 0;
+  }
+  
+  .alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+  
+  .alert-error svg {
+    stroke: #721c24;
+    flex-shrink: 0;
+  }
+  
+  /* Bouton désactivé pendant l'envoi */
+  .submit-btn:disabled,
+  .submit-btn.loading {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: #ccc;
+  }
+  
+  .submit-btn:disabled:hover,
+  .submit-btn.loading:hover {
+    background-color: #ccc;
+    transform: none;
+  }
+
+
+
+  /* Carte Leaflet */
+.map-section {
+    margin-top: 60px;
+  }
+  
+  .map-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    color: #00a8e8;
+    margin-bottom: 20px;
+  }
+  
+  .map-container {
+    width: 85rem;
+    height: 500px; /* ✅ hauteur obligatoire sinon invisible */
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    z-index: 1;
+  }
+  

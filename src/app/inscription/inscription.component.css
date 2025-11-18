@@ -1,0 +1,206 @@
+.preinscription-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+  }
+  
+  /* Section En-tête */
+  .header-section {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .main-title {
+    color: #00a8e8;
+    font-size: 56px;
+    font-weight: 700;
+    font-style: italic;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+  }
+  
+  .info-box {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  .info-title {
+    color: #4caf50;
+    font-size: 26px;
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+  
+  .info-text {
+    color: #666;
+    font-size: 17px;
+    line-height: 1.8;
+    margin: 0;
+  }
+  
+  .phone-link {
+    color: #00a8e8;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .phone-link:hover {
+    color: #0088c0;
+    text-decoration: underline;
+  }
+  
+  /* Sections de formulaire */
+  .form-section {
+    background: white;
+    padding: 40px;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+  
+  .section-title {
+    color: #00a8e8;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    font-style: italic;
+  }
+  
+  .contact-title {
+    color: #dc143c;
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 25px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group.full-width {
+    margin-bottom: 25px;
+  }
+  
+  .date-group label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  .form-group input {
+    padding: 15px 20px;
+    font-size: 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+  }
+  
+  .form-group input::placeholder {
+    color: #999;
+  }
+  
+  .form-group input:focus {
+    outline: none;
+    border-color: #00a8e8;
+    box-shadow: 0 0 0 3px rgba(0, 168, 232, 0.1);
+  }
+  
+  .form-group input.invalid {
+    border-color: #dc143c;
+  }
+  
+  .form-group input.invalid:focus {
+    box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.1);
+  }
+  
+  .error {
+    color: #dc143c;
+    font-size: 13px;
+    margin-top: 5px;
+    display: block;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+  }
+  
+  .submit-btn {
+    background-color: #00a8e8;
+    color: white;
+    padding: 14px 50px;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+  }
+  
+  .submit-btn:hover {
+    background-color: #0088c0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 168, 232, 0.3);
+  }
+  
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .preinscription-container {
+      padding: 20px 15px;
+    }
+  
+    .main-title {
+      font-size: 40px;
+    }
+  
+    .info-box {
+      padding: 25px 20px;
+    }
+  
+    .info-title {
+      font-size: 22px;
+    }
+  
+    .info-text {
+      font-size: 16px;
+    }
+  
+    .form-section {
+      padding: 25px 20px;
+    }
+  
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  
+    .section-title {
+      font-size: 24px;
+    }
+  
+    .submit-btn {
+      width: 100%;
+    }
+  }

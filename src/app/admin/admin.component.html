@@ -1,0 +1,112 @@
+<div class="dashboard-container">
+    <aside class="sidebar">
+      <h2>Tableau de bord</h2>
+      <ul>
+        <li (click)="selectTab('dashboard')" [class.active]="activeTab === 'dashboard'">📊 Dashboard</li>
+        <li (click)="selectTab('messages')" [class.active]="activeTab === 'messages'">📨 Messages reçus</li>
+        <li (click)="selectTab('inscriptions')" [class.active]="activeTab === 'inscriptions'">🧒 Préinscriptions</li>
+        <li (click)="selectTab('enfants')" [class.active]="activeTab === 'enfants'">👶 Enfants</li>
+        <li (click)="selectTab('personnel')" [class.active]="activeTab === 'personnel'">👩‍🏫 Personnel</li>
+        <li (click)="selectTab('paiements')" [class.active]="activeTab === 'paiements'">💰 Paiements</li>
+      </ul>
+    </aside>
+  
+    <main class="main-content">
+      <header class="header">
+        <h1 *ngIf="activeTab === 'dashboard'">Tableau de bord global</h1>
+        <h1 *ngIf="activeTab === 'messages'">Messages reçus</h1>
+        <h1 *ngIf="activeTab === 'inscriptions'">Préinscriptions</h1>
+        <h1 *ngIf="activeTab === 'enfants'">Enfants inscrits</h1>
+        <h1 *ngIf="activeTab === 'personnel'">Personnel</h1>
+        <h1 *ngIf="activeTab === 'paiements'">Paiements</h1>
+      </header>
+  
+      <section class="content">
+  
+        <!-- 📊 DASHBOARD -->
+        <div *ngIf="activeTab === 'dashboard'" class="dashboard-grid">
+          <div class="card">
+            <h3>Total des messages</h3>
+            <p>{{ messages.length }}</p>
+          </div>
+          <div class="card">
+            <h3>Total préinscriptions</h3>
+            <p>{{ inscriptions.length }}</p>
+          </div>
+          <div class="card">
+            <h3>Total enfants</h3>
+            <p>{{ enfants.length }}</p>
+          </div>
+          <div class="card">
+            <h3>Total personnel</h3>
+            <p>{{ personnels.length }}</p>
+          </div>
+        </div>
+  
+        <!-- 📨 Messages -->
+        <div *ngIf="activeTab === 'messages'">
+          <table *ngIf="messages.length > 0; else noMessages">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let msg of messages">
+                <td>{{ msg.nom || '—' }}</td>
+                <td>{{ msg.email }}</td>
+                <td>{{ msg.contenu || msg.message || '—' }}</td>
+                <td>{{ msg.dateEnvoi | date: 'short' }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <ng-template #noMessages><p>Aucun message reçu pour le moment.</p></ng-template>
+        </div>
+  
+        <!-- 👶 Préinscriptions -->
+        <div *ngIf="activeTab === 'inscriptions'">
+          <table *ngIf="inscriptions.length > 0; else noInscriptions">
+            <thead>
+              <tr>
+                <th>Nom de l’enfant</th>
+                <th>Date de naissance</th>
+                <th>Parent</th>
+                <th>Téléphone</th>
+                <th>Période d’inscription</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ins of inscriptions">
+                <td>{{ ins.nomEnfant }} {{ ins.prenomEnfant }}</td>
+                <td>{{ ins.dateNaissance | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ ins.nomPrenomParent }}</td>
+                <td>{{ ins.telephoneParent }}</td>
+                <td>{{ ins.periodeInscription }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <ng-template #noInscriptions><p>Aucune préinscription enregistrée.</p></ng-template>
+        </div>
+  
+        <!-- 👶 Enfants -->
+        <div *ngIf="activeTab === 'enfants'">
+          <p>Liste des enfants inscrits (à connecter au backend plus tard).</p>
+        </div>
+  
+        <!-- 👩‍🏫 Personnel -->
+        <div *ngIf="activeTab === 'personnel'">
+          <p>Liste du personnel (à connecter au backend plus tard).</p>
+        </div>
+  
+        <!-- 💰 Paiements -->
+        <div *ngIf="activeTab === 'paiements'">
+          <p>Liste des paiements et factures (à connecter au backend plus tard).</p>
+        </div>
+  
+      </section>
+    </main>
+  </div>
+  

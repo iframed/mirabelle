@@ -1,0 +1,134 @@
+<!-- Section principale (Hero) -->
+<section class="hero">
+    <div class="hero-content">
+      <h1>BRING A <span class="highlight">SMILE</span> TO YOUR CHILD!</h1>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+      </p>
+  
+      <div class="buttons">
+        <a routerLink="/apropos" class="btn btn-outline">ABOUT US</a>
+        <a routerLink="/contact" class="btn btn-solid">BOOK NOW</a>
+      </div>
+    </div>
+  
+    <div class="hero-image">
+      <img src="/happykiddo_section-info1.png" alt="Happy children painting" />
+    </div>
+  </section>
+  
+  <!-- Section "Who We Are" -->
+  <section class="who-we-are">
+    <div class="content">
+      <h2><span class="who">Who</span> We Are?</h2>
+      <p>
+        La Mirabelle Crèche is a welcoming space where children grow, learn, and smile every day.
+        Our passionate educators provide a safe, creative, and joyful environment to help your child thrive.
+      </p>
+      <p>
+        We offer playful learning activities, artistic workshops, and early education programs designed
+        to help your child discover, imagine, and express themselves.
+      </p>
+    </div>
+  
+    <div class="images">
+      <img src="/yopic.png" alt="kids playing" class="circle-img" />
+      <img src="/yopic.png" alt="kids learning" class="circle-img" />
+    </div>
+  </section>
+  <!-- Section Nos classes -->
+<section class="nos-classes">
+    <h2>Nos classes</h2>
+    <div class="classes-container">
+      <div class="classe-item">
+        <div class="circle blue">
+          <img src="/p5.jpeg" alt="Pouponnière" />
+        </div>
+        <p class="titre">Pouponnière<br /><span>3 à 12 mois</span></p>
+      </div>
+  
+      <div class="classe-item">
+        <div class="circle green">
+          <img src="/c33.jpeg" alt="Crèche" />
+        </div>
+        <p class="titre">Crèche<br /><span>1 à 3 ans</span></p>
+      </div>
+  
+      <div class="classe-item">
+        <div class="circle red">
+          <img src="/c44.jpeg" alt="Jardin d'enfants" />
+        </div>
+        <p class="titre">Jardin d’enfants<br /><span>3 à 6 ans</span></p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Section Ma vie à la crèche -->
+<section class="ma-vie">
+    <h2>Ma vie à <span class="highlight">La Mirabelle</span></h2>
+    <p class="intro">
+      Découvrir, apprendre à devenir autonome, jouer, grandir, s’épanouir tant sur le plan social que physique,
+      sont autant d’étapes importantes dans la vie d’un enfant.
+      <br />
+      Nous mettons ainsi à la disposition de nos enfants des équipements et espaces adéquats qui
+      contribuent à leurs éveils et leurs épanouissements en respectant les normes européennes.
+    </p>
+  
+    <div class="vie-container">
+      <!-- Colonne gauche -->
+      <div class="vie-col gauche">
+        <div class="item green">
+          <img src="assets/icons/psychomotricite.png" alt="Salle de psychomotricité" />
+          <span>Salle de psychomotricité</span>
+        </div>
+        <div class="item yellow">
+          <img src="assets/icons/dortoir.png" alt="Dortoir" />
+          <span>Dortoir</span>
+        </div>
+        <div class="item blue">
+          <img src="assets/icons/bibliotheque.png" alt="Bibliothèque BCD" />
+          <span>Bibliothèque BCD</span>
+        </div>
+        <div class="item red">
+          <img src="assets/icons/escalade.png" alt="Mur d’escalade" />
+          <span>Mur d’escalade</span>
+        </div>
+      </div>
+  
+      <!-- Image centrale -->
+      <div class="vie-image">
+        <img src="/happykiddo_about_02.jpg" alt="Enfants jouant" />
+      </div>
+  
+      <!-- Colonne droite -->
+      <div class="vie-col droite">
+        <div class="item violet">
+          <img src="assets/icons/theatre.png" alt="Théâtre" />
+          <span>Théâtre</span>
+        </div>
+        <div class="item green">
+          <img src="assets/icons/recreation.png" alt="Espace de récréation" />
+          <span>Espace de récréation</span>
+        </div>
+        <div class="item yellow">
+          <img src="assets/icons/fermette.png" alt="Fermette et potager" />
+          <span>Fermette & Potager</span>
+        </div>
+        <div class="item red">
+          <img src="/book_ico.png" alt="Réfectoire" />
+          <span>Réfectoire</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="galerie">
+    <h2>Galerie de photos</h2>
+    <div class="gallery-grid">
+      <div class="photo" *ngFor="let image of images">
+        <img [src]="image" alt="Photo de la crèche">
+      </div>
+    </div>
+  </section>
+  

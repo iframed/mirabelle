@@ -1,0 +1,146 @@
+<div class="contact-container">
+    <!-- En-tête -->
+    <section class="header-section">
+      <h1 class="main-title">Nous contacter</h1>
+      
+      <div class="intro-box">
+        <h2 class="intro-title">Vous cherchez des personnes qualifiées et impliquées pour la garde de vos enfants ?</h2>
+        <p class="intro-text">
+          <strong>Mirabelle</strong> vous invite à découvrir un espace où vos enfants peuvent se développer d'une manière pédagogique et familiale dans un cadre sécurisé.
+        </p>
+      </div>
+    </section>
+  
+    <!-- Contenu principal -->
+    <div class="main-content">
+      <!-- Informations de contact -->
+      <aside class="contact-info">
+        <div class="info-item">
+          <div class="icon-wrapper yellow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div class="info-content">
+            <h3 class="info-label yellow-text">Adresse</h3>
+            <p class="info-detail">60, Résidence Orée de Bouskoura</p>
+            <p class="info-detail">Province de Bouskoura - Casablanca</p>
+          </div>
+        </div>
+  
+        <div class="info-item">
+          <div class="icon-wrapper red">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+              <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            </svg>
+          </div>
+          <div class="info-content">
+            <h3 class="info-label red-text">Téléphone</h3>
+            <p class="info-detail">
+              <a href="tel:+212684333333" class="phone-link">+212 6 84 33 33 33</a>
+            </p>
+            <p class="info-detail">
+              <a href="tel:+212522782315" class="phone-link">+212 5 22 78 23 15</a>
+            </p>
+          </div>
+        </div>
+  
+        <div class="info-item">
+          <div class="icon-wrapper green">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <div class="info-content">
+            <h3 class="info-label green-text">E-mail</h3>
+            <p class="info-detail">
+              <a href="contactlamirabelle.ma" class="email-link">contactlamirabelle.ma</a>
+            </p>
+          </div>
+        </div>
+      </aside>
+  
+      <!-- Formulaire -->
+      <section class="form-section">
+        <!-- Messages de succès et d'erreur -->
+        <div *ngIf="submitSuccess" class="alert alert-success">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+          <span>Message envoyé avec succès ! Nous vous contacterons au plus tôt.</span>
+        </div>
+
+        <div *ngIf="submitError" class="alert alert-error">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="15" y1="9" x2="9" y2="15"></line>
+            <line x1="9" y1="9" x2="15" y2="15"></line>
+          </svg>
+          <span>{{ errorMessage }}</span>
+        </div>
+
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="form-group">
+              <input 
+                type="text" 
+                id="nomPrenom" 
+                formControlName="nomPrenom"
+                placeholder="Nom & Prénom..."
+                [class.invalid]="isFieldInvalid('nomPrenom')">
+              <span class="error" *ngIf="isFieldInvalid('nomPrenom')">
+                Le nom et prénom sont requis
+              </span>
+            </div>
+            
+            <div class="form-group">
+              <input 
+                type="email" 
+                id="email" 
+                formControlName="email"
+                placeholder="E-mail..."
+                [class.invalid]="isFieldInvalid('email')">
+              <span class="error" *ngIf="isFieldInvalid('email')">
+                Email invalide
+              </span>
+            </div>
+          </div>
+  
+          <div class="form-group full-width">
+            <textarea 
+              id="message" 
+              formControlName="message"
+              rows="6"
+              placeholder="Laissez-nous un message, et nous vous contacterons au plus tôt..."
+              [class.invalid]="isFieldInvalid('message')"></textarea>
+            <span class="error" *ngIf="isFieldInvalid('message')">
+              Message requis (minimum 10 caractères)
+            </span>
+          </div>
+  
+          <div class="button-container">
+            <button 
+              type="submit" 
+              class="submit-btn" 
+              [disabled]="isSubmitting"
+              [class.loading]="isSubmitting">
+              <span *ngIf="!isSubmitting">Envoyez</span>
+              <span *ngIf="isSubmitting">Envoi en cours...</span>
+            </button>
+          </div>
+        </form>
+      </section>
+
+
+      <!-- Section carte interactive -->
+<section class="map-section">
+    <h2 class="map-title">📍 Notre emplacement</h2>
+    <div id="map" class="map-container"></div>
+  </section>
+  
+    </div>
+  </div>

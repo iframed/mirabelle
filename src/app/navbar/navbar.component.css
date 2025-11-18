@@ -1,0 +1,75 @@
+.custom-navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 0.8rem 2rem;
+  }
+  
+  .logo {
+    height: 100px;
+    width: 200px;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #333;
+    font-weight: 600;
+    margin: 0 10px;
+    transition: color 0.3s;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #ff7b00;
+  }
+  
+  /* Icônes réseaux sociaux */
+  .social-icons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .social-link {
+    color: #333;
+    font-size: 1.4rem;
+    transition: color 0.3s ease;
+  }
+  
+  .social-link:hover {
+    color: #ff7b00;
+  }
+  
+  /* Mobile */
+  @media (max-width: 991px) {
+    .social-icons {
+      display: none;
+    }
+  }
+  
+  .banner-annonce {
+    background-color: #f8d210; /* Couleur vive */
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px 0;
+    border-bottom: 2px solid #e0b100;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .banner-text {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scrollText 15s linear infinite;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+  }
+  
+  @keyframes scrollText {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  

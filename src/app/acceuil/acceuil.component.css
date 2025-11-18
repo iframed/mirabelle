@@ -1,0 +1,361 @@
+/* --- Section Hero --- */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #4e2c17; /* fond brun comme sur ton image */
+    color: white;
+    padding: 4rem 8%;
+    flex-wrap: wrap;
+  }
+  
+  .hero-content {
+    flex: 1 1 45%;
+    max-width: 600px;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  
+  .hero-content .highlight {
+    color: #ffcc00;
+    font-weight: 800;
+  }
+  
+  .hero-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .btn {
+    padding: 0.8rem 1.8rem;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  
+  .btn-outline {
+    border: 2px solid #fff;
+    color: white;
+  }
+  
+  .btn-outline:hover {
+    background: white;
+    color: #4e2c17;
+  }
+  
+  .btn-solid {
+    background: #ffcc00;
+    color: #4e2c17;
+  }
+  
+  .btn-solid:hover {
+    background: #ffb700;
+  }
+  
+  /* --- Image Hero --- */
+  .hero-image {
+    display: flex;
+    flex: 1 1 45%;
+    display: flex;
+    justify-content: center;
+   
+  }
+  
+  .hero-image img {
+    width: 100%;
+    max-width: 550px;
+    height: 450px;
+    justify-content: center;
+    border-radius: 5%; /* rend l'image circulaire */
+    object-fit: cover;  /* évite la déformation */
+  }
+  
+  
+  /* --- Section Who We Are --- */
+  .who-we-are {
+    background: #fff;
+    padding: 4rem 8%;
+    text-align: center;
+  }
+  
+  .who-we-are h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .who {
+    color: #ff5733;
+    font-weight: 700;
+  }
+  
+  .who-we-are p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #444;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+  }
+  
+  .images {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    
+  }
+  
+  .circle-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    justify-content: center;
+  }
+  
+  /* Responsive */
+  @media (max-width: 900px) {
+    .hero {
+      flex-direction: column;
+      text-align: center;
+    }
+    .hero-content, .hero-image {
+      flex: 1 1 100%;
+    }
+    .hero-image img {
+      max-width: 350px;
+    }
+  }
+  /* --- Section Nos Classes --- */
+.nos-classes {
+    background: #fff;
+    padding: 4rem 8%;
+    text-align: center;
+  }
+  
+  .nos-classes h2 {
+    color: #0088ff;
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+    font-weight: 700;
+  }
+  
+  .classes-container {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  
+  .classe-item {
+    text-align: center;
+  }
+  
+  .circle {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .circle img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    justify-content: center;
+  }
+  
+  .circle.blue {
+    border: 12px solid #00a2ff;
+    background: #ffdc00;
+  }
+  
+  .circle.green {
+    border: 12px solid #00b050;
+    background: #ffdc00;
+  }
+  
+  .circle.red {
+    border: 12px solid #ff4d4d;
+    background: #ffdc00;
+  }
+  
+  .titre {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  
+  .titre span {
+    color: #777;
+    font-size: 1rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 900px) {
+    .classes-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .circle {
+      width: 160px;
+      height: 160px;
+    }
+  }
+  
+ /* --- Section Ma Vie à la Crèche --- */
+.ma-vie {
+    background: #fff;
+    text-align: center;
+    padding: 4rem 8%;
+  }
+  
+  .ma-vie h2 {
+    color: #0088ff;
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  
+  .ma-vie .highlight {
+    color: #ff6600;
+  }
+  
+  .ma-vie .intro {
+    color: #444;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+  }
+  
+  .vie-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  
+  .vie-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    white-space: nowrap;
+  }
+  
+  .item img {
+    width: 50px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    padding: 6px;
+    background: #fff;
+  }
+  
+  .vie-image img {
+    width: 450px;
+    max-width: 90%;
+    height: 350px;
+  }
+  
+  .green {
+    color: #00b050;
+  }
+  
+  .yellow {
+    color: #ffcc00;
+  }
+  
+  .blue {
+    color: #00a2ff;
+  }
+  
+  .red {
+    color: #ff4d4d;
+  }
+  
+  .violet {
+    color: #8000ff;
+  }
+  
+  /* Responsive */
+  @media (max-width: 950px) {
+    .vie-container {
+      flex-direction: column;
+    }
+  
+    .vie-col {
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+  
+    .item {
+      font-size: 1rem;
+    }
+  
+    .vie-image img {
+      width: 150px;
+     
+    }
+  }
+  
+
+  .galerie {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .galerie h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .photo img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .photo img:hover {
+    transform: scale(1.05);
+  }
+  
