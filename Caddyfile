@@ -1,0 +1,6 @@
+:{$PORT} {
+    root * /app/dist/lamirabellefront
+    file_server
+    encode gzip
+}
+
