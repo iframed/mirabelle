@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "caddy run --config Caddyfile --adapter caddyfile",
+    "start": "serve -s dist/lamirabellefront -l $PORT",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -24,6 +24,7 @@
     "express": "^4.18.2",
     "leaflet": "^1.9.4",
     "rxjs": "~7.8.0",
+    "serve": "^14.2.5",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
