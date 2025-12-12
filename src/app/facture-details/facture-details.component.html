@@ -1,0 +1,86 @@
+<div #invoiceContainer class="invoice-container" *ngIf="facture && enfant">
+
+
+    <!-- EN-TÊTE -->
+    <div class="header">
+      <div class="logo">
+        <img src="/c.png" alt="Logo établissement">
+      </div>
+  
+      <div class="entreprise">
+        <h2>Établissement Scolaire</h2>
+        <p>Adresse : Rue Exemple 123, Casablanca</p>
+        <p>Téléphone : +212 6 00 00 00 00</p>
+        <p>Email : contactecole.ma</p>
+        <p>ICE : 001234567000089</p>
+      </div>
+    </div>
+  
+    <hr class="divider">
+  
+    <!-- INFORMATION FACTURE -->
+    <div class="invoice-info">
+      <h3>Facture N° {{ facture.id }}</h3>
+      <p><strong>Date :</strong> {{ facture.dateFacture | date:'dd/MM/yyyy' }}</p>
+      <p><strong>Mois concerné :</strong> {{ facture.moisConcerne }}</p>
+    </div>
+  
+    <hr class="divider-light">
+  
+    <!-- DESTINATAIRE (PARENT) -->
+    <div class="client-section">
+      <h3>Facturée à :</h3>
+      <p><strong>Parent :</strong> {{ parent?.nom }} {{ parent?.prenom }}</p>
+      <p><strong>Téléphone :</strong> {{ parent?.telephone || '—' }}</p>
+      <p><strong>ID Parent :</strong> {{ facture.parentId }}</p>
+    </div>
+  
+    <!-- INFORMATIONS ENFANT -->
+    <div class="child-section">
+      <h3>Enfant concerné :</h3>
+      <p><strong>Nom :</strong> {{ enfant.nom }} {{ enfant.prenom }}</p>
+      <p><strong>Date de naissance :</strong> {{ enfant.dateNaissance | date:'dd/MM/yyyy' }}</p>
+    </div>
+  
+    <!-- TABLEAU DÉTAILS DE FACTURATION -->
+    <table class="invoice-table">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Qté</th>
+          <th>Prix Unitaire</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Frais de scolarité — {{ facture.moisConcerne }}</td>
+          <td>1</td>
+          <td>{{ facture.montantTotal }} Dh</td>
+          <td>{{ facture.montantTotal }} Dh</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- TOTAL -->
+    <div class="total-section">
+      <p><strong>Total TTC :</strong> {{ facture.montantTotal }} Dh</p>
+      <p><strong>Statut :</strong>
+        <span [ngClass]="facture.payee ? 'paid' : 'unpaid'">
+          {{ facture.payee ? 'PAYÉE' : 'NON PAYÉE' }}
+        </span>
+      </p>
+    </div>
+   
+
+  
+    <!-- FOOTER -->
+    <div class="footer">
+      <p>Merci pour votre confiance.</p>
+      <p><em>Document généré automatiquement – valable sans signature.</em></p>
+    </div>
+  
+  </div>
+
+  <button (click)="downloadPDF()">Télécharger PDF</button>
+  

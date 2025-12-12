@@ -1,0 +1,114 @@
+.invoice-container {
+    width: 900px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    font-family: "Inter", sans-serif;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+    color: #2d3436;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo img {
+    width: 120px;
+  }
+  
+  .entreprise {
+    text-align: right;
+  }
+  
+  .entreprise h2 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 700;
+  }
+  
+  .divider {
+    margin: 25px 0;
+    border: 0;
+    border-top: 3px solid #0984e3;
+  }
+  
+  .divider-light {
+    margin: 15px 0;
+    border: 0;
+    border-top: 1px solid #b2bec3;
+  }
+  
+  .invoice-info h3 {
+    margin-bottom: 5px;
+    font-size: 20px;
+  }
+  
+  .client-section,
+  .child-section {
+    margin-top: 20px;
+  }
+  
+  .client-section h3,
+  .child-section h3 {
+    font-size: 18px;
+    border-left: 4px solid #0984e3;
+    padding-left: 10px;
+  }
+  
+  .invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    font-size: 16px;
+  }
+  
+  .invoice-table th {
+    background: #0984e3;
+    color: white;
+    padding: 12px;
+  }
+  
+  .invoice-table td {
+    padding: 12px;
+    border-bottom: 1px solid #dfe6e9;
+  }
+  
+  .total-section {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f1f2f6;
+    border-radius: 8px;
+    font-size: 17px;
+  }
+  
+  .paid {
+    color: #00b894;
+    font-weight: 700;
+  }
+  
+  .unpaid {
+    color: #d63031;
+    font-weight: 700;
+  }
+  
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 14px;
+    color: #636e72;
+  }
+  
+  @media print {
+    body {
+      background: white !important;
+    }
+    .invoice-container {
+      box-shadow: none;
+      width: 100%;
+      border-radius: 0;
+    }
+  }
+  

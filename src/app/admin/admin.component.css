@@ -1,110 +1,280 @@
+/* --- LAYOUT GÉNÉRAL --- */
 .dashboard-container {
-    display: flex;
-    height: 100vh;
-    font-family: 'Poppins', sans-serif;
-    background-color: #f9fafb;
-  }
-  
-  .sidebar {
-    width: 240px;
-    background-color: #2b2d42;
-    color: white;
-    padding: 20px;
-  }
-  
-  .sidebar h2 {
-    text-align: center;
-    margin-bottom: 1rem;
-    font-size: 1.4rem;
-  }
-  
-  .sidebar ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .sidebar li {
-    padding: 10px 15px;
-    margin: 8px 0;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: background 0.3s;
-  }
-  
-  .sidebar li:hover,
-  .sidebar li.active {
-    background-color: #3a3f58;
-  }
-  
-  .main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-  }
-  
-  .header {
-    border-bottom: 2px solid #e5e7eb;
-    margin-bottom: 20px;
-  }
-  
-  .content table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .content th,
-  .content td {
-    padding: 10px 15px;
-    border-bottom: 1px solid #e5e7eb;
-  }
-  
-  .content th {
-    background-color: #f1f3f5;
-    text-align: left;
-  }
-  
-  p {
-    text-align: center;
-    color: #6b7280;
-    font-style: italic;
-  }
-  
+  display: flex;
+  min-height: 100vh;
+  background: #f5f6fa;
+  font-family: "Inter", sans-serif;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+  width: 260px;
+  background: #1f2937; /* gris foncé pro */
+  color: white;
+  padding: 20px;
+  box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+}
+
+.sidebar h2 {
+  margin-bottom: 25px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 12px 15px;
+  margin-bottom: 8px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.sidebar ul li:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateX(5px);
+}
+
+.sidebar ul li.active {
+  background: #3b82f6; /* bleu moderne */
+  font-weight: bold;
+  transform: translateX(5px);
+}
+
+/* --- MAIN CONTENT --- */
+.main-content {
+  flex: 1;
+  padding: 25px;
+}
+
+.header h1 {
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #111827;
+}
+
+/* --- DASHBOARD CARDS --- */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* Conteneur dashboard */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* Carte */
+/* Carte */
+.card {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* pour pousser le badge en bas */
+  height: 150px; /* fixe la hauteur pour uniformité */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Titre de la carte */
+.card h3 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Nombre principal */
+.card p {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+  color: #222;
+}
+
+/* Indicateur en bas */
+.card .indicator {
+  margin-top: 10px;
+}
+
+/* Badge */
+.badge {
+  display: inline-block;
+  background-color: #ff4d4f; /* rouge vif pour alertes */
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Couleurs spécifiques selon type */
+.badge.message { background-color: #ff4d4f; } /* rouge */
+.badge.inscription { background-color: #faad14; } /* orange */
+.badge.paiement { background-color: #1890ff; } /* bleu */
+
+
+/* --- GRAPH --- */
+.chart-container {
+  margin-top: 30px;
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* --- TABLEAUX --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+thead {
+  background: #e5e7eb;
+}
+
+th, td {
+  padding: 14px 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+tbody tr:hover {
+  background: #f9fafb;
+}
+
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+/* Boutons spécifiques */
+button.delete {
+  background: #ef4444;
+  color: white;
+}
+
+button.view {
+  background: #3b82f6;
+  color: white;
+}
+
+button.add {
+  background: #10b981;
+  color: white;
+}
+
+/* --- FILTRES --- */
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.filters select,
+.filters input {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: white;
+}
+
+.filters button {
+  background: #3b82f6;
+  color: white;
+}
+
+/* --- INDICATEURS PAIEMENTS --- */
+.unpaid-indicator {
+  color: #ef4444;
+  font-size: 20px;
+}
+
+.paid-indicator {
+  color: #10b981;
+  font-size: 20px;
+}
+
+/* --- BOUTON AJOUT PERSONNEL --- */
+.btn-add {
+  background: #10b981;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.status-indicator {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.lu {
+  color: green;
+}
+
+.non-lu {
+  color: red;
+}
 
 
 
-  .dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-  }
-  
-  .card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-  }
-  
-  .card:hover {
-    transform: translateY(-3px);
-  }
-  
-  .card h3 {
-    color: #374151;
-    font-size: 1rem;
-    margin-bottom: 10px;
-  }
-  
-  .card p {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #2b2d42;
-  }
-  
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+}
+.status-indicator .non-ouvert {
+  color: red;
+}
+.status-indicator .ouvert {
+  color: green;
+}

@@ -1,0 +1,26 @@
+<div class="facture-container">
+  
+    <h2>Créer une facture pour {{ enfant?.nom }} {{ enfant?.prenom }}</h2>
+  
+    <p>
+      Parent : <strong>{{ enfant?.parent?.nom }} {{ enfant?.parent?.prenom }}</strong>
+    </p>
+  
+    <form (ngSubmit)="creerFacture()" class="facture-form">
+  
+      <label>Mois concerné :</label>
+      <input type="text" [(ngModel)]="nouvelleFacture.moisConcerne" name="moisConcerne" required>
+  
+      <label>Montant total :</label>
+      <input type="number" [(ngModel)]="nouvelleFacture.montantTotal" name="montantTotal" required>
+  
+      <div class="checkbox-row">
+        <input type="checkbox" [(ngModel)]="nouvelleFacture.payee" name="payee">
+        <label>Payée ?</label>
+      </div>
+  
+      <button type="submit">Créer facture</button>
+    </form>
+  
+  </div>
+  

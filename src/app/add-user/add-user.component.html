@@ -1,0 +1,66 @@
+<form [formGroup]="userForm" (ngSubmit)="submit()">
+    <div>
+      <label>Nom :</label>
+      <input formControlName="nom" type="text" />
+      <div *ngIf="userForm.get('nom')?.invalid && userForm.get('nom')?.touched">
+        Nom requis
+      </div>
+    </div>
+  
+    <div>
+      <label>Prénom :</label>
+      <input formControlName="prenom" type="text" />
+      <div *ngIf="userForm.get('prenom')?.invalid && userForm.get('prenom')?.touched">
+        Prénom requis
+      </div>
+    </div>
+  
+    <div>
+      <label>Email :</label>
+      <input formControlName="email" type="email" />
+      <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+        Email invalide
+      </div>
+    </div>
+  
+    <div>
+      <label>Mot de passe :</label>
+      <input formControlName="motDePasse" type="password" />
+      <div *ngIf="userForm.get('motDePasse')?.invalid && userForm.get('motDePasse')?.touched">
+        Mot de passe requis
+      </div>
+    </div>
+  
+    <div>
+      <label>Rôle :</label>
+      <select formControlName="role">
+        <option value="" disabled>Choisir un rôle</option>
+        <option value="ADMIN">ADMIN</option>
+        <option value="PARENT">PARENT</option>
+        <option value="PERSONNEL">PERSONNEL</option>
+      </select>
+    </div>
+  
+    <!-- Champ parentId visible seulement si le rôle est PARENT -->
+    <div *ngIf="userForm.get('role')?.value === 'PARENT'">
+      <label>Parent :</label>
+      <select formControlName="parentId">
+        <option value="">-- Choisir un parent --</option>
+        <!-- Ici tu peux faire un *ngFor sur une liste de parents récupérée via ton service -->
+        <option *ngFor="let p of parents" [value]="p.id">{{ p.nom }} {{ p.prenom }}</option>
+      </select>
+    </div>
+  
+    <!-- Champ personnelId visible seulement si le rôle est PERSONNEL -->
+    <div *ngIf="userForm.get('role')?.value === 'PERSONNEL'">
+      <label>Personnel :</label>
+      <select formControlName="personnelId">
+        <option value="">-- Choisir un personnel --</option>
+        <!-- *ngFor sur la liste du personnel -->
+        <option *ngFor="let pe of personnels" [value]="pe.id">{{ pe.nom }} {{ pe.prenom }}</option>
+      </select>
+    </div>
+  
+    <button type="submit" [disabled]="userForm.invalid">Créer utilisateur</button>
+  </form>
+  

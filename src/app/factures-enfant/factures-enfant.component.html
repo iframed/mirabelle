@@ -1,0 +1,24 @@
+<h2> {{ enfant?.nom }} {{ enfant?.prenom }}</h2>
+
+<div class="calendar">
+  <div *ngFor="let mois of moisListe" class="mois" [id]="'facture-' + mois.num">
+    <h3>{{ mois.nom }} {{ mois.num >= 9 ? anneeDebut : anneeFin }}</h3>
+
+
+    <div *ngIf="facturesMois[mois.num]">
+      <p>Montant : {{ facturesMois[mois.num].montantTotal }} Dh</p>
+
+      <p [ngClass]="facturesMois[mois.num].payee ? 'payee' : 'non-payee'">
+        Payée : {{ facturesMois[mois.num].payee ? 'Oui' : 'Non' }}
+      </p>
+
+      <button (click)="voirFacture(facturesMois[mois.num])">Voir la facture</button>
+      
+
+    </div>
+
+    <div *ngIf="!facturesMois[mois.num]">
+      <p>Aucune facture</p>
+    </div>
+  </div>
+</div>

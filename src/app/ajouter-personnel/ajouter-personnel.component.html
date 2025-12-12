@@ -1,0 +1,27 @@
+<h2>Ajouter un membre du personnel</h2>
+
+<form (ngSubmit)="ajouterPersonnel()" class="form-box">
+
+  <label>Nom :</label>
+  <input type="text" [(ngModel)]="formPersonnel.nom" name="nom" required>
+
+  <label>Prénom :</label>
+  <input type="text" [(ngModel)]="formPersonnel.prenom" name="prenom" required>
+
+  <label>Poste :</label>
+  <input type="text" [(ngModel)]="formPersonnel.poste" name="poste" required>
+
+  <label>Date d'embauche :</label>
+  <input type="date" [(ngModel)]="formPersonnel.dateEmbauche" name="dateEmbauche" required>
+
+  <label>Salaire :</label>
+  <input type="number" [(ngModel)]="formPersonnel.salaire" name="salaire" required>
+
+  <label>Sections :</label>
+  <select multiple [(ngModel)]="formPersonnel.sectionsIds" name="sectionsIds">
+    <option *ngFor="let s of sections" [value]="s.id">{{ s.nom }} ({{ s.niveau }})</option>
+  </select>
+
+  <button type="submit">➕ Ajouter</button>
+  <button type="button" (click)="retour()">⬅ Retour</button>
+</form>

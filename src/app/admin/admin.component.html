@@ -8,6 +8,8 @@
         <li (click)="selectTab('enfants')" [class.active]="activeTab === 'enfants'">👶 Enfants</li>
         <li (click)="selectTab('personnel')" [class.active]="activeTab === 'personnel'">👩‍🏫 Personnel</li>
         <li (click)="selectTab('paiements')" [class.active]="activeTab === 'paiements'">💰 Paiements</li>
+        <li (click)="selectTab('users')" [class.active]="activeTab === 'users'">👤 Utilisateurs</li>
+
       </ul>
     </aside>
   
@@ -19,29 +21,69 @@
         <h1 *ngIf="activeTab === 'enfants'">Enfants inscrits</h1>
         <h1 *ngIf="activeTab === 'personnel'">Personnel</h1>
         <h1 *ngIf="activeTab === 'paiements'">Paiements</h1>
+        <h1 *ngIf="activeTab === 'Utilisateurs'">Paiements</h1>
       </header>
   
       <section class="content">
   
         <!-- 📊 DASHBOARD -->
-        <div *ngIf="activeTab === 'dashboard'" class="dashboard-grid">
-          <div class="card">
-            <h3>Total des messages</h3>
-            <p>{{ messages.length }}</p>
+        <!-- Dashboard -->
+        <div *ngIf="activeTab === 'dashboard'">
+
+          <!-- Grille des cartes -->
+          <div class="dashboard-grid">
+        
+            <!-- Messages -->
+            <div class="card">
+              <h3>Messages</h3>
+              <p>{{ messages.length }}</p>
+              <div *ngIf="countMessagesNonLus > 0" class="indicator">
+                <span class="badge">❗ {{ countMessagesNonLus }} non lus</span>
+              </div>
+            </div>
+        
+            <!-- Préinscriptions -->
+            <div class="card">
+              <h3>Préinscriptions</h3>
+              <p>{{ inscriptions.length }}</p>
+              <div *ngIf="countInscriptionsNonValidees > 0" class="indicator">
+                <span class="badge">❗ {{ countInscriptionsNonValidees }} non validées</span>
+              </div>
+            </div>
+        
+            <!-- Enfants / Paiements -->
+            <div class="card">
+              <h3>Enfants</h3>
+              <p>{{ enfants.length }}</p>
+              <div *ngIf="countEnfantsNonPayes > 0" class="indicator">
+                <span class="badge">❗ {{ countEnfantsNonPayes }} paiements non faits</span>
+              </div>
+            </div>
+        
+            <!-- Personnel -->
+            <div class="card">
+              <h3>Personnel</h3>
+              <p>{{ personnels.length }}</p>
+            </div>
+        
           </div>
-          <div class="card">
-            <h3>Total préinscriptions</h3>
-            <p>{{ inscriptions.length }}</p>
+        
+          <!-- Graphe des paiements -->
+          <div class="chart-container">
+            <h3>Paiements mensuels</h3>
+            <canvas baseChart
+                    [data]="paiementsChart"
+                    [options]="paiementsOptions"
+                    [type]="'bar'">
+            </canvas>
           </div>
-          <div class="card">
-            <h3>Total enfants</h3>
-            <p>{{ enfants.length }}</p>
-          </div>
-          <div class="card">
-            <h3>Total personnel</h3>
-            <p>{{ personnels.length }}</p>
-          </div>
+        
         </div>
+        
+        
+
+
+        
   
         <!-- 📨 Messages -->
         <div *ngIf="activeTab === 'messages'">
@@ -55,57 +97,292 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let msg of messages">
+              <tr *ngFor="let msg of messages" (click)="ouvrirMessage(msg)">
                 <td>{{ msg.nom || '—' }}</td>
                 <td>{{ msg.email }}</td>
-                <td>{{ msg.contenu || msg.message || '—' }}</td>
+                <td>{{ msg.message | slice:0:30 }}...</td>
+
                 <td>{{ msg.dateEnvoi | date: 'short' }}</td>
+                <td>
+                  <!-- Indicateur plus clair -->
+                  <span class="status-indicator">
+                    <span *ngIf="!msg.lu" class="non-lu">❗ Non lu</span>
+                    <span *ngIf="msg.lu" class="lu">✔️ Lu</span>
+                  </span>
+              
+                  <button (click)="supprimerMessage(msg.id); $event.stopPropagation()">❌</button>
+                </td>
               </tr>
+              
+              
+              
+              
             </tbody>
           </table>
+
+          <!-- Modal Message -->
+<!-- Modal -->
+<<div class="modal-backdrop" *ngIf="modalMessage"> <div class="modal-content"> <pre>{{ modalMessage | json }}</pre> <h3>Message de {{ modalMessage.nom || '—' }} {{ modalMessage.prenom ?? '(prénom absent)' }}</h3> <p><strong>Email :</strong> {{ modalMessage.email || '—' }}</p> <p><strong>Contenu :</strong> {{ modalMessage.message || '(aucun contenu)' }}</p> <p><strong>Date :</strong> {{ modalMessage.dateEnvoi | date:'short' }}</p> <button (click)="fermerModal()">Fermer</button> </div> </div>
+
+
+
+
+
+
+          
           <ng-template #noMessages><p>Aucun message reçu pour le moment.</p></ng-template>
         </div>
   
         <!-- 👶 Préinscriptions -->
-        <div *ngIf="activeTab === 'inscriptions'">
-          <table *ngIf="inscriptions.length > 0; else noInscriptions">
+        <!-- 👶 Préinscriptions -->
+<div *ngIf="activeTab === 'inscriptions'">
+
+  <div class="filters">
+    <label>Section :</label>
+    <select [(ngModel)]="inscriptionsFiltreSection">
+      <option [ngValue]="null">Toutes</option>
+      <option *ngFor="let sec of sections" [ngValue]="sec.id">{{ sec.nom }}</option>
+    </select>
+  
+    <input type="text" placeholder="Rechercher par nom…" [(ngModel)]="inscriptionsFiltreNom" />
+  
+    <button (click)="appliquerFiltresInscriptions()">🔍 Rechercher</button>
+  </div>
+  
+  <!-- Tableau inscriptions -->
+<table *ngIf="inscriptions.length > 0; else noInscriptions">
+  <thead>
+    <tr>
+      <th>Nom de l’enfant</th>
+      <th>Date de naissance</th>
+      <th>Parent</th>
+      <th>Téléphone</th>
+      <th>Période d’inscription</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ins of inscriptionsFiltres" (click)="ouvrirInscription(ins)">
+      <td>{{ ins.nomEnfant }} {{ ins.prenomEnfant }}</td>
+      <td>{{ ins.dateNaissance | date:'dd/MM/yyyy' }}</td>
+      <td>{{ ins.nomPrenomParent }}</td>
+      <td>{{ ins.telephoneParent }}</td>
+      <td>{{ ins.periodeInscription }}</td>
+      <td>
+        <span class="status-indicator">
+          <span *ngIf="!ins.valide" class="non-ouvert">❗</span>
+          <span *ngIf="ins.valide" class="ouvert">✔️</span>
+        </span>
+        <button (click)="supprimerInscription(ins.id); $event.stopPropagation()">❌ Supprimer</button>
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+<ng-template #noInscriptions><p>Aucune préinscription enregistrée.</p></ng-template>
+
+<!-- Modal préinscription -->
+<div class="modal-backdrop" *ngIf="modalInscription">
+  <div class="modal-content">
+    <pre>{{ modalInscription | json }}</pre>
+    <h3>Préinscription de {{ modalInscription.nomEnfant }} {{ modalInscription.prenomEnfant }}</h3>
+    <p><strong>Parent :</strong> {{ modalInscription.nomPrenomParent || '—' }}</p>
+    <p><strong>Téléphone :</strong> {{ modalInscription.telephoneParent || '—' }}</p>
+    <p><strong>Date de naissance :</strong> {{ modalInscription.dateNaissance | date:'dd/MM/yyyy' }}</p>
+    <p><strong>Période :</strong> {{ modalInscription.periodeInscription || '—' }}</p>
+    <p><strong>Lien familial :</strong> {{ modalInscription.lienFamilial || '—' }}</p>
+    <button (click)="fermerModalInscription()">Fermer</button>
+  </div>
+</div>
+</div>
+  
+        <!-- 👶 Enfants -->
+        <!-- 👶 Enfants -->
+<div *ngIf="activeTab === 'enfants'">
+  <div class="filters">
+
+    <!-- 🎯 Filtre section -->
+    <label>Section :</label>
+    <select [(ngModel)]="filtreSection">
+      <option [ngValue]="null">Toutes</option>
+      <option *ngFor="let sec of sections" [ngValue]="sec.id">{{ sec.nom }}</option>
+    </select>
+
+    <!-- 🔍 Filtre nom/prénom -->
+    <input type="text" placeholder="Rechercher par nom…" [(ngModel)]="filtreNom" />
+
+    <!-- 🔘 Bouton rechercher -->
+    <button (click)="appliquerFiltres()">🔍 Rechercher</button>
+  </div>
+
+  <table *ngIf="enfantsFiltres.length > 0; else noEnfants">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Date de naissance</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of enfantsFiltres">
+        <td>{{ e.nom }}</td>
+        <td>{{ e.prenom }}</td>
+        <td>{{ e.dateNaissance | date: 'dd/MM/yyyy' }}</td>
+        <td>
+          <button (click)="supprimerEnfant(e.id)">❌ Supprimer</button>
+          <button (click)="voirDocumentsEnfant(e.id)">📄 Documents</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noEnfants><p>Aucun enfant inscrit.</p></ng-template>
+</div>
+
+  
+        <!-- 👩‍🏫 Personnel -->
+        <!-- 👩‍🏫 PERSONNEL -->
+        <div *ngIf="activeTab === 'personnel'">
+
+          <h2>Personnel</h2>
+        
+          <button class="btn-add" (click)="allerAuFormulairePersonnel()">
+            ➕ Ajouter un membre du personnel
+          </button>
+        
+          <hr>
+        
+          <h2>Liste du personnel</h2>
+        
+          <!-- tableau existant -->
+          <table *ngIf="personnels.length > 0; else noPersonnel">
             <thead>
               <tr>
-                <th>Nom de l’enfant</th>
-                <th>Date de naissance</th>
-                <th>Parent</th>
-                <th>Téléphone</th>
-                <th>Période d’inscription</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Poste</th>
+                <th>Date Embauche</th>
+                <th>Salaire</th>
+                <th>Sections</th>
+                <th>Action</th>
               </tr>
             </thead>
+        
             <tbody>
-              <tr *ngFor="let ins of inscriptions">
-                <td>{{ ins.nomEnfant }} {{ ins.prenomEnfant }}</td>
-                <td>{{ ins.dateNaissance | date: 'dd/MM/yyyy' }}</td>
-                <td>{{ ins.nomPrenomParent }}</td>
-                <td>{{ ins.telephoneParent }}</td>
-                <td>{{ ins.periodeInscription }}</td>
+              <tr *ngFor="let p of personnels">
+                <td>{{ p.nom }}</td>
+                <td>{{ p.prenom }}</td>
+                <td>{{ p.poste }}</td>
+                <td>{{ p.dateEmbauche }}</td>
+                <td>{{ p.salaire }} Dh</td>
+                <td>
+                  <span *ngFor="let sec of p.sections">{{ sec.nom }} | </span>
+                </td>
+                <td>
+                  <button (click)="supprimerPersonnel(p.id)">❌ Supprimer</button>
+                </td>
               </tr>
             </tbody>
           </table>
-          <ng-template #noInscriptions><p>Aucune préinscription enregistrée.</p></ng-template>
+        
+          <ng-template #noPersonnel>
+            <p>Aucun membre du personnel pour le moment.</p>
+          </ng-template>
+        
         </div>
-  
-        <!-- 👶 Enfants -->
-        <div *ngIf="activeTab === 'enfants'">
-          <p>Liste des enfants inscrits (à connecter au backend plus tard).</p>
-        </div>
-  
-        <!-- 👩‍🏫 Personnel -->
-        <div *ngIf="activeTab === 'personnel'">
-          <p>Liste du personnel (à connecter au backend plus tard).</p>
-        </div>
+        
+
   
         <!-- 💰 Paiements -->
-        <div *ngIf="activeTab === 'paiements'">
-          <p>Liste des paiements et factures (à connecter au backend plus tard).</p>
-        </div>
+        <!-- 💰 Paiements -->
+<!-- 💰 Paiements -->
+<div *ngIf="activeTab === 'paiements'" class="paiements-section">
+  <div class="filters">
+    <label>Section :</label>
+    <select [(ngModel)]="paiementsFiltreSection">
+      <option [ngValue]="null">Toutes</option>
+      <option *ngFor="let sec of sections" [ngValue]="sec.id">{{ sec.nom }}</option>
+    </select>
   
+    <input type="text" placeholder="Rechercher par nom…" [(ngModel)]="paiementsFiltreNom" />
+  
+    <button (click)="appliquerFiltresPaiements()">🔍 Rechercher</button>
+  </div>
+  
+
+  <h2>Liste des enfants</h2>
+  <table *ngIf="enfants.length > 0; else noEnfantsPaiements">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Statut</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of enfantsFiltresPaiements">
+        <td>{{ e.nom }}</td>
+        <td>{{ e.prenom }}</td>
+        
+        <!-- 🔴 Point rouge si non payé ce mois -->
+        <td>
+          <span *ngIf="!isPaidThisMonth(e)" class="unpaid-indicator">❗</span>
+          <span *ngIf="isPaidThisMonth(e)" class="paid-indicator">✔️</span>
+        </td>
+        
+        <td>
+          <button (click)="voirFacturesEnfant(e.id)">📅 Voir les factures</button>
+          <button (click)="ajouterPaiement(e.id)">➕</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #noEnfantsPaiements>
+    <p>Aucun enfant enregistré.</p>
+  </ng-template>
+</div>
+
+
+
+<!-- 👤 Utilisateurs -->
+<!-- 👤 Utilisateurs -->
+<div *ngIf="activeTab === 'users'">
+  <h2>Liste des utilisateurs</h2>
+  <button class="btn-add" (click)="allerAuFormulaireUser()">➕ Ajouter un utilisateur</button>
+
+  <table *ngIf="utilisateurs.length > 0; else noUsers">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Rôle</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of utilisateurs">
+        <td>{{ u.nom }}</td>
+        <td>{{ u.prenom }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{ u.role }}</td>
+        <td>
+          <button (click)="supprimerUtilisateur(u.id)">❌ Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #noUsers>
+    <p>Aucun utilisateur enregistré.</p>
+  </ng-template>
+</div>
+
+
+
+
+
       </section>
     </main>
   </div>

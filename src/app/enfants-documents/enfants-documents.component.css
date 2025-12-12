@@ -1,0 +1,202 @@
+/* Container général */
+.enfants-section {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 12px;
+  }
+  
+  /* Titre */
+  .enfants-section h2 {
+    font-size: 20px;
+    color: #0f172a;
+    margin-bottom: 12px;
+  }
+  
+  /* Liste des enfants */
+  .enfants-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 4px 12px rgba(2,6,23,0.06);
+  }
+  
+  .child-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-bottom: 1px solid #eef2f7;
+    cursor: pointer;
+    transition: background 0.18s ease, transform 0.12s ease;
+  }
+  
+  .child-item:last-child {
+    border-bottom: none;
+  }
+  
+  .child-item:hover {
+    background: #f1f5f9;
+    transform: translateX(4px);
+  }
+  
+  /* état sélectionné */
+  .child-item.selected {
+    background: linear-gradient(90deg, rgba(59,130,246,0.08), rgba(99,102,241,0.03));
+    border-left: 4px solid #3b82f6;
+    font-weight: 600;
+  }
+  
+  /* nom + meta (petit texte à droite si besoin) */
+  .child-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .child-name {
+    color: #0f172a;
+    font-size: 15px;
+  }
+  
+  .child-meta {
+    color: #64748b;
+    font-size: 12px;
+  }
+  
+  /* Séparateur */
+  .enfants-section hr {
+    margin: 18px 0;
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(15,23,42,0.06), rgba(99,102,241,0.02));
+  }
+  
+  /* Upload container */
+  .upload-panel {
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(2,6,23,0.04);
+  }
+  
+  .upload-panel h3 {
+    margin-top: 0;
+    color: #0f172a;
+    font-size: 18px;
+  }
+  
+  /* Form controls */
+  .upload-panel label {
+    display: block;
+    margin: 8px 0 6px;
+    color: #334155;
+    font-size: 13px;
+  }
+  
+  .upload-panel select,
+  .upload-panel input[type="file"],
+  .upload-panel input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #e6eef6;
+    background: #fff;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  
+  /* Customiser l'apparence du input file (simple) */
+  .file-input-wrap {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 8px;
+  }
+  
+  .custom-file-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: opacity 0.15s;
+  }
+  
+  .custom-file-btn:hover { opacity: 0.92; }
+  
+  /* Bouton upload */
+  .upload-panel button {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    background: #10b981;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.12s ease;
+  }
+  
+  .upload-panel button:active {
+    transform: translateY(1px);
+  }
+  
+  /* Liste des documents */
+  .docs-list {
+    margin-top: 12px;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .docs-list li {
+    padding: 10px 12px;
+    border-radius: 8px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    background: #fbfdff;
+    border: 1px solid #eef6ff;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  
+  .docs-list a {
+    color: #0f172a;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .doc-type {
+    color: #64748b;
+    font-size: 12px;
+    margin-left: 8px;
+  }
+  
+  /* Message d'absence de docs */
+  .no-docs {
+    color: #64748b;
+    font-style: italic;
+    padding: 12px 0;
+  }
+  
+  /* Responsive */
+  @media (max-width: 800px) {
+    .child-item { padding: 10px; }
+    .upload-panel { padding: 14px; }
+  }
+  .unread {
+    color: red;
+  }
+  
+  .read {
+    color: green;
+  }
+  

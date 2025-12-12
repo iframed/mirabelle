@@ -1,0 +1,89 @@
+/* --- CONTAINER --- */
+.facture-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    animation: fadeIn 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* --- TITRE --- */
+  .facture-container h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  /* --- INFO PARENT --- */
+  .facture-container p {
+    font-size: 16px;
+    color: #34495e;
+    margin-bottom: 25px;
+  }
+  
+  /* --- FORMULAIRE --- */
+  .facture-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #2c3e50;
+  }
+  
+  .facture-form input[type="text"],
+  .facture-form input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    border: 1px solid #dcdfe3;
+    background: #f9f9f9;
+    transition: 0.2s;
+    font-size: 15px;
+  }
+  
+  .facture-form input:focus {
+    border-color: #3498db;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(52,152,219,0.4);
+    outline: none;
+  }
+  
+  /* Checkbox aligné proprement */
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .checkbox-row label {
+    margin-bottom: 0;
+  }
+  
+  /* --- BOUTON --- */
+  .facture-form button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #3498db, #6ab0f3);
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.25s ease;
+  }
+  
+  .facture-form button:hover {
+    background: linear-gradient(135deg, #2980b9, #5ba4e8);
+    transform: translateY(-2px);
+  }
+  

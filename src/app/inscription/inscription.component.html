@@ -45,6 +45,18 @@
               </span>
             </div>
           </div>
+          <div class="form-group">
+            <label>Section</label>
+            <select formControlName="sectionId" [class.invalid]="isFieldInvalid(enfantForm, 'sectionId')">
+              <option [ngValue]="null">-- Sélectionner une section --</option>
+              <option *ngFor="let sec of sections" [ngValue]="sec.id">
+                {{ sec.nom }}
+              </option>
+            </select>
+            <span class="error" *ngIf="isFieldInvalid(enfantForm, 'sectionId')">
+              La section est requise
+            </span>
+          </div>
   
           <div class="form-row">
             <div class="form-group date-group">

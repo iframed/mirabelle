@@ -1,0 +1,53 @@
+<div class="enfants-section">
+    <h2>Liste des enfants</h2>
+    <ul class="enfants-list">
+      <li *ngFor="let enfant of enfants"
+          (click)="loadDocuments(enfant)"
+          [class.selected]="selectedEnfant?.id === enfant.id"
+          class="child-item">
+        <div class="child-info">
+          <span class="child-name">{{ enfant.nom }} {{ enfant.prenom }}</span>
+          
+        </div>
+        <div class="child-action">➡️</div>
+      </li>
+    </ul>
+  
+    <hr />
+  
+    <div *ngIf="selectedEnfant" class="upload-panel">
+      <h3>Uploader des documents pour {{ selectedEnfantName }}</h3>
+  
+      <label for="docType">Type de document :</label>
+      <select id="docType" [(ngModel)]="selectedType">
+        <option *ngFor="let type of documentTypes" [ngValue]="type">{{ type }}</option>
+      </select>
+      
+  
+      <div class="file-input-wrap">
+        <input type="file" id="fileInput" (change)="onFilesSelected($event)" multiple hidden />
+        <label class="custom-file-btn" for="fileInput">📁 Choisir des fichiers</label>
+        <span class="file-count" *ngIf="selectedFiles?.length">{{ selectedFiles.length }} fichier(s) sélectionné(s)</span>
+      </div>
+  
+      <button (click)="uploadDocuments()">Uploader</button>
+  
+      <hr />
+  
+      <h4>Documents existants :</h4>
+      <ul class="docs-list" *ngIf="selectedEnfantDocuments.length > 0; else noDocs">
+        <li *ngFor="let doc of selectedEnfantDocuments">
+          <div>
+            <a [href]="doc.cheminFichier" target="_blank">{{ doc.nom }}</a>
+            <span class="doc-type">({{ doc.type }})</span>
+          </div>
+          <div class="doc-actions">
+            <!-- ex: bouton supprimer -->
+            
+          </div>
+        </li>
+      </ul>
+      <ng-template #noDocs><p class="no-docs">Aucun document pour cet enfant.</p></ng-template>
+    </div>
+  </div>
+  
